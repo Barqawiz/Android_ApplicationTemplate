@@ -18,11 +18,11 @@ Three easy steps to create the application:
 2. **Rename** 
     * Rename the application name from res > values > strings.xml
     * Rename the package name from AndroidManifest.xml 
-3. **Fill** Fill the data into the database file data.sqlite inside res folder using any preferred SQLite browser application 
+3. **Fill** the data into the database file “data.sqlite” inside res folder using any preferred SQLite browser application 
 
 **+Extra step** to custom the design: go to res folder and replace the images in drawable folders with new images
 
-*for detailed and beginners tutorial [click her][0]*
+for detailed and beginners tutorial [click her][0]
 
 
 Result
@@ -41,7 +41,7 @@ The template is dynamic and you can use it to create various types of applicatio
 2. Stories application.
 3. Jokes application.
 
-And many more . . .
+   And many more . . .
 
 
 Credit
@@ -69,6 +69,8 @@ License
 
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
+
+*This means that you MUST provide attribution in your application to Monkey Clicks for the use of this code. The way to do this is to mention Monkey Clicks project name in the setting or the about name for example.*
 
 [0]: http://codk.tumblr.com/post/123/android-template
 
