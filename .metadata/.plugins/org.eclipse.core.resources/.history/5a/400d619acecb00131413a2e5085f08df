@@ -21,6 +21,6 @@
     
 	<!-- Make sure to increase the database version if you want to update the database for the application -->
 	<!-- WARNING: below number should not be decreased when update the application but increse in case of change table data -->
-    <item name="db_version" format="integer" type="integer">1</item>
+    <item name="db_version" format="integer" type="integer">5</item>
 
 </resources>

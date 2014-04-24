@@ -70,7 +70,7 @@ License
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
 
-*This means that you MUST provide attribution in your application to Monkey Clicks for the use of this code. The way to do this is to mention Monkey Clicks project name in the setting or the about name for example.*
+*This means that you MUST provide attribution in your application to **Monkey Clicks** for the use of this code. The way to do this is to mention **Monkey Clicks** project name in the setting or the about page for example.*
 
 [0]: http://codk.tumblr.com/post/123/android-template
 
