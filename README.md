@@ -8,7 +8,7 @@ This android application support the following features:
 2. Read data from database.
 3. Add items to favorite.
 4. Support Google Admonb ads.
-5/ Share on social media.
+5. Share on social media.
 
 HowTo
 -----
