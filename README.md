@@ -72,5 +72,4 @@ License
 
 *This means that you MUST provide attribution in your application to **Monkey Clicks** for the use of this code. The way to do this is to mention **Monkey Clicks** project name in the setting or the about page for example.*
 
-[0]: http://codk.tumblr.com/post/123/android-template
-
+[0]: http://codk.tumblr.com/post/83727645411/android-template
