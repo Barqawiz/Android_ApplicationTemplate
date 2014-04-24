@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- **Social** -->
+    <string name="google_play_developer_name">Barqawiz</string>
+     
+    <!-- **Languages** -->
+    <item type="bool" name="is_right_to_left" format="boolean">false</item>
+    
+    <!-- **Ads** -->
+    <!-- Admob ids looks like this id: ca-app-pub-5913188303133322/1103281522 -->
+    <!-- Note that the example id not real and does not work -->
+    <!-- Create ads ids from: apps.admob.com -->
+    <string name="banner_id"></string>
+    <string name="interstitial_Id"></string>
+    
+    <!-- **Database -->
+    
+      <!-- Make sure to increase the database version if you want to update the database for the application-->
+    <string name="db_version"></string>
+
+</resources>

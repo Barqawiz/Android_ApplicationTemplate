@@ -1,0 +1,8 @@
+package com.iaraby.template.data;
+
+public class Beans {
+
+	public class Category {
+		
+	}
+}

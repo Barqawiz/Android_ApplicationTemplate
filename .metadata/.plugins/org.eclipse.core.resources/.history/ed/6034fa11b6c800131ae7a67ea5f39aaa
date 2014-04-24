@@ -1,0 +1,17 @@
+<resources>
+
+    <dimen name="is_land">0dp</dimen>
+    <dimen name="small_pading">3dp</dimen>
+    
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">14dp</dimen>
+    <dimen name="activity_vertical_margin">14dp</dimen>
+    
+    <!-- Main screen dimentions -->
+	<dimen name="menu_margin">30dp</dimen>
+	
+	<!-- Content screen -->
+	<dimen name="arrow_size">30dp</dimen>
+	<dimen name="details_text_margin">8dp</dimen>
+	
+</resources>

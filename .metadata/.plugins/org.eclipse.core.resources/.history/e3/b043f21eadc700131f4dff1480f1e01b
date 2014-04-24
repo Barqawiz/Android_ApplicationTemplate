@@ -1,0 +1,7 @@
+package com.example.test;
+
+import android.os.AsyncTask;
+
+public class ImageLoader extends AsyncTask<String, Integer, Boolean>{
+
+}

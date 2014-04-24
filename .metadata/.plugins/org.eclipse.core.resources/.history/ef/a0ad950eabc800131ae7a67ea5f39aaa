@@ -1,0 +1,31 @@
+package com.iaraby.template.data;
+
+import com.company.appname.R;
+
+import android.content.Context;
+
+public class Config {
+
+	private static Config instance;
+
+	private Context context;
+	
+	public static Config getInstance(Context context) {
+		if (instance == null)
+			instance = new Config(context);
+		return instance;
+	} //Method: manage instance
+	
+	private Config(Context context) {
+		this.context = context;
+	} //Constructor
+	
+	public boolean isRTL() {
+		return context.getResources().getBoolean(R.bool.is_right_to_left);
+	} //method: is right to left
+	
+	public String getMarketLink() {
+		return Constants.MARKET_LINK + context.getString(R.string.google_play_developer_name);
+	}
+	
+} //Class

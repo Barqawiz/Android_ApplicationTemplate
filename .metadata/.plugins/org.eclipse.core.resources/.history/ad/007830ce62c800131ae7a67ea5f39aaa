@@ -1,0 +1,17 @@
+package com.iaraby.template.data;
+
+public class Constants {
+
+	/*Constants*/
+	public final static String LOG_TAG   = "Temp";
+	public final static int EMPTY_INT = -1;
+	public final static boolean IS_RTF = false;
+	
+	/*MODES*/
+	public static int Content_MODE = 1;
+	public static int FAV_MODE     = 2;
+	
+	/*Links*/
+	public final static String MARKET_LINK =  "market://search?q=pub:<market_developer_name>";
+	
+}

@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="is_land">10dp</dimen>
+    <dimen name="row_vertical_space">6dp</dimen>
+    <dimen name="row_edge_padding">3dp</dimen>
+	
+</resources>

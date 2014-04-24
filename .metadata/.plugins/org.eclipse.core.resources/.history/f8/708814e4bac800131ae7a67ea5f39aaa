@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="selection_color">#1d99d3</color>
+     <color name="side_color">#1Abababa</color>
+     <color name="text_area_color">#99D1D0CE</color>
+     
+     <color name="light_gray">#99D1D0CE</color>
+</resources>
+<!-- 
+100% — FF
+90% — E6
+80% — CC
+70% — B3
+60% — 99
+50% — 80
+40% — 66
+30% — 4D
+20% — 33
+10% — 1A
+0% — 00
+ -->

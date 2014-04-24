@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="app_name">Content Template</string>
+    <string name="title_activity_master_">Master</string>
+
+    <!-- Menus -->
+    <string name="action_settings">Settings</string>
+    <string name="action_info">About</string>
+    <string name="action_share">Share</string>
+    <string name="action_not_fav">Add to Fav</string>
+    <string name="action_fav">Favourite Item</string>
+    
+    <!-- Main -->
+    <string name="list">List</string>
+    
+    <string name="more">More</string>
+
+    <!-- About -->
+    <string name="company_name">Your Company Name</string>
+    <string name="company_details">Her add text about your company</string>
+    <string name="library_dont_edit">This application based on open source project by Barqawiz (@Barqawi88)</string>
+
+    <!-- Handle Error -->
+    <string name="no_fav_message">Favorite list is empty</string>
+    
+
+</resources>

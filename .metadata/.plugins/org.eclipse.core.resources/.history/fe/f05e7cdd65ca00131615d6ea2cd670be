@@ -1,0 +1,9 @@
+<resources>
+
+
+    <!-- Main screen dimentions -->
+	<dimen name="titles_size">23sp</dimen>
+	
+
+	
+</resources>

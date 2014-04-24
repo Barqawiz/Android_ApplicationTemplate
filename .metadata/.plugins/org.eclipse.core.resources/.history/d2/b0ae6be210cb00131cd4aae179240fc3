@@ -1,0 +1,56 @@
+package com.iaraby.template.view;
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.company.appname.R;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.util.DialogManager;
+import com.iaraby.template.view.fragment.MainFragment;
+import com.iaraby.utility.LogManager;
+
+public class MainActivity extends FragmentActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        //Initial
+        LogManager.getIns().setDebug(true); 
+        LogManager.getIns().setError(true); 
+        
+        //UI
+        if (savedInstanceState == null) {
+        	LogManager.getIns().d(Constants.LOG_TAG, "Set Main Fragment");
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new MainFragment())
+                    .commit();
+        }
+        
+    } //method: on create
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+        	DialogManager.showInfoDialog(MainActivity.this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+}

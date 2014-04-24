@@ -1,0 +1,71 @@
+package com.iaraby.template.view;
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.company.appname.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.util.DialogManager;
+import com.iaraby.template.view.fragment.MainFragment;
+import com.iaraby.utility.LogManager;
+
+public class MainActivity extends FragmentActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		// Initial
+		LogManager.getIns().setDebug(true);
+		LogManager.getIns().setError(true);
+
+		// UI
+		if (savedInstanceState == null) {
+			LogManager.getIns().d(Constants.LOG_TAG, "Set Main Fragment");
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new MainFragment()).commit();
+			handleInterstitialAd();
+		}
+
+	} // method: on create
+
+	private void handleInterstitialAd() {
+		String adId = getString(R.string.interstitial_Id);
+		if (adId == null || adId.length() == 0)
+			return;
+		
+		InterstitialAd interstitial = new InterstitialAd(this);
+		interstitial.setAdUnitId(adId);
+		// Create ad request.
+		AdRequest adRequest = new AdRequest.Builder().build();
+		// Begin loading your interstitial.
+		interstitial.loadAd(adRequest);
+		
+		 if (interstitial.isLoaded()) {
+		      interstitial.show();
+		    }
+	} // method: show ad that cover all the page on start
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			DialogManager.showInfoDialog(MainActivity.this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+} // class: main

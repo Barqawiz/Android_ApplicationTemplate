@@ -1,0 +1,7 @@
+package com.iaraby.template.data;
+
+public class Config {
+
+	private static Config instance;
+	
+}

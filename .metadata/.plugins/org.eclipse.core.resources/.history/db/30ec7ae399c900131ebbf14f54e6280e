@@ -1,0 +1,68 @@
+package com.iaraby.template.control;
+
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.data.MyDataAdapter;
+import com.iaraby.template.data.Beans.Category;
+
+import android.database.Cursor;
+import android.os.AsyncTask;
+
+public class DetailsTask extends AsyncTask<String, Integer, Boolean>{
+
+	private final static int success = 1;
+	private final static int fail    = 0;
+
+	//params
+	boolean isFav;
+	private long catId;
+	private int  position;
+	
+	//result
+	private HandleResult handler;
+	String title;
+	Cursor content;
+	
+	public DetailsTask(long id, int  position, boolean isFav, HandleResult handler) {
+		this.catId    = id;
+		this.position = position;
+		this.handler  = handler;
+		this.isFav = isFav;
+	} //constructor
+	
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		super.onProgressUpdate(values);
+		
+		if (values[0] == success && content != null) {
+			handler.setResult(title, content);
+		} else {
+			handler.handleError("Error reading data from database");
+		} //check id data received successfully 
+		
+	} //method: 
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		
+		content = MyDataAdapter.getInstance().getContent(catId);
+		Cursor catCur   = MyDataAdapter.getInstance().getCategoryName(catId);
+		if (catCur != null && catCur.moveToFirst()) {
+			try {
+				title = catCur.getString(catCur.getColumnIndexOrThrow(Category.COL_NAME));
+			}catch(IllegalArgumentException ex) {
+				publishProgress(Constants.EMPTY_INT);
+				return false;
+			} //try to get the title
+		}
+		
+		publishProgress(success);
+		
+		return true;
+	} //method: process the data
+
+	public interface HandleResult {
+		public void setResult(String title, String desc);
+		public void setResult(String title, Cursor desc);
+		public void handleError(String error);
+	} //handler for task results
+} //class: Task to read details for selected item 

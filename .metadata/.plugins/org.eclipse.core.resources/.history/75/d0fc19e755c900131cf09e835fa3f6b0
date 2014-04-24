@@ -1,0 +1,10 @@
+package com.iaraby.template.control;
+
+public interface Notifier {
+
+	public void setTitle(String title);
+	public void setDetails(int position, long id);
+	public void activeList();
+	public void activeDetails();
+	public int getCurrentPage();
+}

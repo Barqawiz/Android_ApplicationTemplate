@@ -1,0 +1,27 @@
+package com.example.test;
+
+import android.os.AsyncTask;
+import android.widget.ImageView;
+
+public class ImageLoader extends AsyncTask<String, Integer, Boolean>{
+
+	private ImageView img;
+	public ImageLoader(ImageView img) {
+		this.img = img;
+	}
+	
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		
+		return true;
+	}
+	
+	@Override
+	protected void onPostExecute(Boolean result) {
+		
+		super.onPostExecute(result);
+	}
+
+	
+}

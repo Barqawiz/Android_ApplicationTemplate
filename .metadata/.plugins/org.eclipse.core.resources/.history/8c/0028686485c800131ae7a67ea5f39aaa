@@ -1,0 +1,19 @@
+package com.iaraby.template.data;
+
+public class Beans {
+
+	public class Category {
+		public final static String TABLE_NAME = "Category";
+		
+		
+	} //class: describe table category
+
+	public class Content {
+		public final static String TABLE_NAME = "Content";
+	} //class: describe table content
+	
+	public class Favorite {
+		public final static String TABLE_NAME = "Favorite";
+	} //class: describe table favorite
+
+} // class: collection of objects thats describe the database

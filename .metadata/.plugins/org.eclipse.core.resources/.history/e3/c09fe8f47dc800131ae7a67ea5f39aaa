@@ -1,0 +1,16 @@
+package com.iaraby.template.data;
+
+import android.content.Context;
+
+public class Config {
+
+	private static Config instance;
+	
+	public static Config getInstance() {
+		
+	} //Method: manage instance
+	
+	private Config(Context context) {
+		
+	} //Contructor
+}

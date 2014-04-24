@@ -1,0 +1,23 @@
+package com.example.test;
+
+import android.os.AsyncTask;
+
+public class ImageLoader extends AsyncTask<String, Integer, Boolean>{
+
+	
+	
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		
+		return null;
+	}
+	
+	@Override
+	protected void onPostExecute(Boolean result) {
+		
+		super.onPostExecute(result);
+	}
+
+	
+}

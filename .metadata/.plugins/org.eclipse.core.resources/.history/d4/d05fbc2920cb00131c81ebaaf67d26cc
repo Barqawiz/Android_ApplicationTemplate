@@ -1,0 +1,94 @@
+package com.iaraby.template.control;
+
+import com.company.appname.R;
+import com.iaraby.template.data.Beans;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.data.FavoriteManager;
+import com.iaraby.template.data.MyDataAdapter;
+import com.iaraby.template.data.Beans.Category;
+import com.iaraby.utility.LogManager;
+import com.iaraby.utility.Utility;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class DetailsTask extends AsyncTask<String, Integer, Boolean>{
+
+	private final static int success = 1;
+	private final static int fail    = 0;
+
+	private Context context;
+	//params
+	boolean isFav;
+	private long id;
+	private int  position;
+	
+	//result
+	private HandleResult handler;
+	String title;
+	Cursor content;
+	
+	public DetailsTask(Context context, long id, int  position, boolean isFav, HandleResult handler) {
+		this.context = context;
+		this.id    = id;
+		this.position = position;
+		this.handler  = handler;
+		this.isFav = isFav;
+	} //constructor
+	
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		super.onProgressUpdate(values);
+		
+		if (values[0] == success && content != null) {
+			handler.setResult(title, content);
+		} else {
+			handler.handleError("Error reading data from database");
+		} //check id data received successfully 
+		
+	} //method: 
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		
+		if (!MyDataAdapter.getInstance().isOpen()) {
+			
+			LogManager.getIns().ee(Constants.LOG_TAG, "database closed ! make sure you call open database");
+			publishProgress(Constants.EMPTY_INT);
+			return false;
+		}
+			
+		if (isFav) {
+			try {
+				content = FavoriteManager.getInstance(context).getFavCursor();
+			} catch(IllegalAccessError ex) {
+				Log.e(Constants.LOG_TAG, ex.toString());
+			} //try to get content cursor
+			title = context.getString(R.string.fav);
+			
+		} else {
+			content = MyDataAdapter.getInstance().getContent(id);
+			
+			Cursor catCur   = MyDataAdapter.getInstance().getCategoryName(id);
+			if (catCur != null && catCur.moveToFirst()) {
+				try {
+					title = catCur.getString(catCur.getColumnIndexOrThrow(Category.COL_NAME));
+				}catch(IllegalArgumentException ex) {
+					publishProgress(Constants.EMPTY_INT);
+					return false;
+				} //try to get the title
+			}
+		} //check if Favorite
+		publishProgress(success);
+		
+		return true;
+	} //method: process the data
+
+	public interface HandleResult {
+		public void setResult(String title, String desc);
+		public void setResult(String title, Cursor desc);
+		public void handleError(String error);
+	} //handler for task results
+} //class: Task to read details for selected item 

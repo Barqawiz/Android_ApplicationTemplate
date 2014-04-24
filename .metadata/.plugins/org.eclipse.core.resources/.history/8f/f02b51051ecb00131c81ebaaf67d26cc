@@ -1,0 +1,69 @@
+package com.iaraby.template.data;
+
+import java.io.IOException;
+
+import android.database.Cursor;
+
+import com.google.android.gms.internal.dv;
+import com.iaraby.db.helper.Config;
+import com.iaraby.db.helper.DatabaseAdapter;
+import com.iaraby.template.data.Beans.Category;
+import com.iaraby.template.data.Beans.Content;
+
+public class MyDataAdapter extends DatabaseAdapter{
+	private static MyDataAdapter instance;
+	
+	public static MyDataAdapter getInstance() {
+		if (instance == null)
+			instance = new MyDataAdapter();
+		return instance;
+	}
+	
+	/**
+	 * This method to open the database and update the favorite list if the dabase version changed 
+	 * 
+	 * @param Config database configuration e.g.version
+	 * @throws IOException
+	 */
+	public void openAndMaintainFav(Config config) throws IOException {
+		open(config);
+		setListener(new DBListener() {
+			@Override
+			public void onFinishCoping() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	public Cursor getCtegories() {
+		return fetchData(Category.TABLE_NAME, Category.COL_ID, Category.COL_NAME);
+	}
+	
+	public Cursor getCategoryName(long id) {
+		String selection = Category.COL_ID + "= ?";
+		String[] where = {id+""};
+		
+		return fetchDataWhere(Category.TABLE_NAME,selection, where, null, 
+				Category.COL_NAME);
+	}
+	
+	public Cursor getContent(long cat_id) {
+		String selection = Content.COL_CAT_ID + "= ?";
+		String[] where = {cat_id+""};
+		
+		return fetchDataWhere(Content.TABLE_NAME,selection, where, null, 
+				Content.COL_ID, Content.COL_TITLE, Content.COL_CONTENT, Content.COL_IMAGE, Content.COL_FLAG);
+	}
+	
+	public Cursor getContentItem(long id) {
+		String selection = Content.COL_ID + "= ?";
+		String[] where = {id+""};
+		
+		return fetchDataWhere(Content.TABLE_NAME,selection, where, null, 
+				Content.COL_ID, Content.COL_TITLE, Content.COL_CONTENT, Content.COL_IMAGE, Content.COL_FLAG);
+	}
+	
+	
+	
+} //class: Database Adapter

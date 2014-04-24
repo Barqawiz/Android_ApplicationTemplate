@@ -1,0 +1,15 @@
+package com.iaraby.template.control;
+
+import com.iaraby.template.view.fragment.DetailsFrag;
+
+public interface MasterNotifier {
+
+	public void setTitle(String title);
+	public void setDetails(int position, long id);
+	public void activeList();
+	public void activeDetails();
+	public int getCurrentPage();
+	public DetailsFrag getDetailsFrag();
+	public void updateFavButton(long selectedId);
+	public void validateListFav(int numDetailsItems);
+}

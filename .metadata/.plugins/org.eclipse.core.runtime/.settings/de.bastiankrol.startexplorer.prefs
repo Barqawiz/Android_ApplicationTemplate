@@ -1,0 +1,12 @@
+de.bastiankrol.startexplorer.copy_resource_path_separator_custom_string=, 
+de.bastiankrol.startexplorer.copy_resource_path_separator_standard=\n
+de.bastiankrol.startexplorer.custom_desktop_environment_command_start_file_manager=explorer.exe /e,${resource_path}
+de.bastiankrol.startexplorer.custom_desktop_environment_command_start_file_manager_and_select_file=explorer.exe /select,${resource_path}
+de.bastiankrol.startexplorer.custom_desktop_environment_command_start_shell=cmd.exe /c start /d ${resource_path}
+de.bastiankrol.startexplorer.custom_desktop_environment_command_start_system_application=cmd.exe /c ${resource_path}
+de.bastiankrol.startexplorer.custom_desktop_environment_working_directory_mode_custom_commands=NONE
+de.bastiankrol.startexplorer.custom_desktop_environment_working_directory_mode_start_file_manager=NONE
+de.bastiankrol.startexplorer.custom_desktop_environment_working_directory_mode_start_shell=NONE
+de.bastiankrol.startexplorer.custom_desktop_environment_working_directory_mode_start_system_application=NONE
+de.bastiankrol.startexplorer.selected_desktop_environment=MAC_OS
+eclipse.preferences.version=1

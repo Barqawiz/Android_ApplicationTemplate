@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="font_title">title.ttf</string>
+    
+    <string name="font_content">content.ttf</string>
+    
+</resources>

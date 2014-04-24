@@ -1,0 +1,10 @@
+package com.iaraby.template.data;
+
+public class Config {
+
+	private static Config instance;
+	
+	public static Config getInstance() {
+		
+	} //Method: manage instance
+}

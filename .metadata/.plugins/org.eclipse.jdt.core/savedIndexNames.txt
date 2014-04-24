@@ -1,0 +1,9 @@
+INDEX VERSION 1.126+/Users/Jaguar/Work/workspace/opensource/Monkey Clicks/Android_ApplicationTemplate/.metadata/.plugins/org.eclipse.jdt.core
+366536487.index
+3427805917.index
+4141936908.index
+3564690245.index
+1271210037.index
+2438749328.index
+2220976145.index
+864899174.index

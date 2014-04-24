@@ -1,0 +1,26 @@
+package com.iaraby.template.data;
+
+public class Constants {
+
+	/*Constants*/
+	public final static String LOG_TAG = "Temp";
+	public final static String SPLIT = ":";
+	public final static int EMPTY_INT = -1;
+	
+	/*Pages*/
+	public final static String LIST_PAGE = "Temp";
+	public final static String DETAILS_PAGE = "Temp";
+	
+	/*MODES*/
+	public static int Content_MODE = 1;
+	public static int FAV_MODE     = 2;
+	
+	/*Links*/
+	public final static String MARKET_LINK =  "market://search?q=pub:";
+	
+	/*preferences tags*/
+	public final static String PARAM_ID_TAG      = "id";
+	public final static String PARAM_POS_TAG     = "position";
+	public final static String PARAM_SEL_POS_TAG = "selected_position";
+	public final static String PARAM_SEL_ID_TAG  = "selected_id";
+}

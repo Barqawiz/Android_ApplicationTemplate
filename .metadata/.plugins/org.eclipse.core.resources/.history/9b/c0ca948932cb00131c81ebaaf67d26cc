@@ -1,0 +1,114 @@
+package com.iaraby.template.control;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import com.iaraby.template.data.Beans;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.data.MyDataAdapter;
+
+import android.app.IntentService;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
+
+public class FavGarbagCollector extends IntentService {
+
+	public FavGarbagCollector(String name) {
+		super(name);
+	}
+
+	private static String VERSION_CLR_TAG = "version_clear:";
+	public static boolean IS_RUNNING;
+
+	protected void onHandleIntent(Intent intent) {
+
+		IS_RUNNING = true;
+
+		if (intent != null && MyDataAdapter.getInstance().isOpen()) {
+
+			ArrayList<String> favList = intent
+					.getStringArrayListExtra(Constants.PARAM_FAV_LIST);
+			int version = intent.getIntExtra(Constants.PARAM_FAV_VER, Constants.EMPTY_INT);
+			if (favList != null && version != Constants.EMPTY_INT) {
+
+				HashMap<String, String> favHash = new HashMap<String, String>();
+				String selection = null;
+				String where[] = new String[favList.size()];
+				int index = 0;
+
+				for (String id : favList) {
+					if (selection == null) {
+						selection = Beans.Content.COL_ID + " = ? ";
+					} else {
+						selection += " OR " + Beans.Content.COL_ID + " = ? ";
+					}
+					where[index] = id;
+					index++;
+					favHash.put(id, id);
+				} // loop on all favorite ids
+
+				Cursor cursor = MyDataAdapter.getInstance().fetchDataWhere(
+						Beans.Content.TABLE_NAME, selection, where, null,
+						Beans.Content.COL_ID);
+
+				if (cursor != null && cursor.moveToFirst()) {
+					do {
+						String itemId = cursor.getString(cursor
+								.getColumnIndex(Beans.Content.COL_ID));
+						favHash.remove(itemId);
+					} while (cursor.moveToNext());
+
+				} // make sure the cursor not null
+				
+				// now the favorite hash contains only the ids to delete
+				if (favHash.size() > 0) {
+					selection = null;
+					where = new String[favHash.size()];
+					index = 0;
+					for (String id: favHash.values()) {
+						if (selection == null) {
+							selection = Beans.Content.COL_ID + " = ? ";
+						} else {
+							selection += " OR " + Beans.Content.COL_ID + " = ? ";
+						}
+						where[index] = id;
+						index++;
+					} //loop on all items to delete
+					
+					if (MyDataAdapter.getInstance().isOpen() && selection != null) {
+						MyDataAdapter.getInstance().delete(Beans.Content.TABLE_NAME, selection, where);
+					} //make sure the database is still open
+				} //check if there is items to delete
+				
+				clearVersion(this, version);
+			} // make sure favorite list is well received
+
+		}
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+
+	@Override
+	public void onDestroy() {
+		IS_RUNNING = false;
+		super.onDestroy();
+	}
+
+	public static void clearVersion(Context context, int version) {
+		PreferenceManager.getDefaultSharedPreferences(context).edit()
+			.putInt(VERSION_CLR_TAG + version, version).commit();
+		
+	}
+	
+	public static boolean isVersionClear(Context context, int version) {
+		return PreferenceManager.getDefaultSharedPreferences(context).
+			getInt(VERSION_CLR_TAG + version, Constants.EMPTY_INT) != Constants.EMPTY_INT;
+		
+	}
+} // class: Service

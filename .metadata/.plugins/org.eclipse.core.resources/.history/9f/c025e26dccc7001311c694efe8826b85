@@ -1,0 +1,100 @@
+package com.iaraby.template.view.fragment;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.company.appname.R;
+import com.iaraby.template.control.Notifier;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.data.DummyTest;
+
+public class ListFrag extends ListFragment {
+
+	private Notifier notifier;
+	private boolean isDual;
+	
+	private int  selectedPos = 0;
+	private long selectedId  = Constants.EMPTY_INT;
+
+	public static ListFrag createInstance(boolean isDual) {
+
+		ListFrag instance = new ListFrag();
+		Bundle args = new Bundle();
+		args.putBoolean("is_dual", isDual);
+		instance.setArguments(args);
+
+		return instance;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		// initial
+		if (savedInstanceState != null) {
+			this.selectedPos = savedInstanceState.getInt("position", this.selectedPos);
+			this.selectedId  = savedInstanceState.getLong("id", this.selectedId);
+		}
+		int landThreshold = (int) getResources().getDimension(R.dimen.is_land);
+		if (landThreshold > 0) isDual = true;
+		customList();
+		//Process
+		populateList();
+		if (isDual || selectedId != Constants.EMPTY_INT) {
+			showDetails(this.selectedPos, this.selectedId, true);
+		} else { 
+			notifier.activeList();
+		}
+	} //method: on create
+	
+	private void populateList() {
+		setListAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_activated_1, DummyTest.TTILES));
+		
+
+	}
+
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		this.selectedPos = position;
+		this.selectedId = id;
+		showDetails(position, id, false);
+	}
+
+	void showDetails(int position, long id, boolean isSelect) {
+		if (isSelect) {
+			getListView().setItemChecked(position, true);
+		}
+		notifier.setDetails(position, id);
+	}
+
+	private void customList() {
+		getListView().setCacheColorHint(0);
+		getListView().setSelector(R.drawable.listitem_selector);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		if (isDual)
+			getListView().setBackgroundColor(getResources().getColor( R.color.side_color) );
+
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean("is_dual", this.isDual);
+		outState.putInt("position", this.selectedPos);
+		outState.putLong("id", this.selectedId);
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		if (activity != null)
+			notifier = (Notifier) activity;
+		
+		super.onAttach(activity);
+	}
+	
+	
+
+} // class: list fragment

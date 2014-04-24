@@ -1,0 +1,86 @@
+package com.iaraby.template.control;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import com.company.appname.R;
+import com.iaraby.template.data.Beans.Content;
+import com.iaraby.template.data.Preferences;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.util.FontManager;
+
+public class DetailsPagerAdapter extends PagerAdapter{
+
+	private Context context;
+	private Cursor contentCur;
+	private int numViews;
+	
+	public DetailsPagerAdapter(Cursor contentCur, Context context) {
+		this. context = context;
+		this.contentCur = contentCur;	
+		
+		if (contentCur != null) 
+			this.numViews = contentCur.getCount();
+	} //constructor 
+	
+
+	public Object instantiateItem(View container, int position) { 
+		
+		View rootView = LayoutInflater.from(context).inflate(R.layout.details_item, null);
+		
+		int itemPosition = getItemPosition(position);
+		
+		//custom the text
+		TextView text = (TextView) rootView.findViewById(R.id.details_text_item);
+		FontManager.getInstance(context).setTextFont(text, FontManager.CONTENT);
+		if (Preferences.getInstance(context).isRTL()) text.setGravity(Gravity.RIGHT);
+		
+		//set the text
+		if (contentCur != null && contentCur.moveToPosition(itemPosition)) {
+			String data = "";
+			
+			data = contentCur.getString(contentCur.getColumnIndex(Content.COL_CONTENT));//TODO: change column id to
+			                               //contentCur.getColumnIndexOrThrow(TempDatabaseAdapter.COL_DES));
+			text.setText(data);
+		} //check if current position available in the cursor
+		return rootView;
+	} //method: create each item in the view pager
+	
+	public int getItemPosition(int position) {
+		if (Preferences.getInstance(context).isRTL()) {
+			position = (numViews - position - 1 >= 0) ? numViews - position - 1: 0;
+		}
+		return position;
+	}
+	
+	@Override
+	public int getCount() {
+		return numViews;
+	} //method: count the items
+
+	public void destroyItem(View collection, int position, Object view) {
+		((ViewPager) collection).removeView((View)view);
+	} // method: remove item from pager adapter
+	
+	@Override
+	public boolean isViewFromObject(View view, Object object) {
+		return view == ((View) object);
+	}
+
+	public String getSelectedText(int position) {
+		if (position < 0 || position >= numViews)
+			return null;
+		
+		String data = contentCur.getString(0);//TODO: change column id to
+        
+		return data;
+	} //method: return data for the selected page
+	
+
+}

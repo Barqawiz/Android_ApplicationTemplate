@@ -1,0 +1,66 @@
+package com.example.test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
+import android.os.AsyncTask;
+import android.widget.ImageView;
+
+public class ImageLoader extends AsyncTask<String, Integer, Boolean>{
+
+	private ImageView img;
+	public ImageLoader(ImageView img) {
+		this.img = img;
+	}
+	
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		try {
+			InputStream in = OpenHttpConnection(params[0]);
+		} catch (IOException e) {
+			return false;
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@Override
+	protected void onPostExecute(Boolean result) {
+		
+		super.onPostExecute(result);
+	}
+
+	
+	private InputStream OpenHttpConnection(String urlString)
+			throws IOException {
+		InputStream in = null;
+		int response = -1;
+
+		URL url = new URL(urlString);
+		URLConnection conn = url.openConnection();
+
+		if (!(conn instanceof HttpURLConnection))
+			throw new IOException("Not an HTTP connection");
+
+		try {
+			HttpURLConnection httpConn = (HttpURLConnection) conn;
+			httpConn.setAllowUserInteraction(false);
+			httpConn.setInstanceFollowRedirects(true);
+			httpConn.setRequestMethod("GET");
+			httpConn.connect();
+
+			response = httpConn.getResponseCode();
+			if (response == HttpURLConnection.HTTP_OK) {
+				in = httpConn.getInputStream();
+			}
+		} catch (Exception ex) {
+			throw new IOException("Error connecting");
+		}
+		return in;
+	}
+}

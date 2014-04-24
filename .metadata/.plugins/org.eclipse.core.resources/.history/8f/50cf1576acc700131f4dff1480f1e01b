@@ -1,0 +1,118 @@
+package com.example.test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+public class MainActivity extends ActionBarActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new PlaceholderFragment()).commit();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * A placeholder fragment containing a simple view.
+	 */
+	public static class PlaceholderFragment extends Fragment {
+
+		public PlaceholderFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container,
+					false);
+			Bitmap bitmap = DownloadImage("http://www.animateit.net/data/media/nov2011/1590877-smiling_kid.gif");
+			ImageView img = (ImageView) rootView.findViewById(R.id.imageView1);
+			img.setImageBitmap(bitmap);
+
+			return rootView;
+		}
+		
+		private InputStream OpenHttpConnection(String urlString) throws IOException {
+			InputStream in = null;
+			int response = -1;
+
+			URL url = new URL(urlString);
+			URLConnection conn = url.openConnection();
+
+			if (!(conn instanceof HttpURLConnection))
+				throw new IOException("Not an HTTP connection");
+
+			try {
+				HttpURLConnection httpConn = (HttpURLConnection) conn;
+				httpConn.setAllowUserInteraction(false);
+				httpConn.setInstanceFollowRedirects(true);
+				httpConn.setRequestMethod("GET");
+				httpConn.connect();
+
+				response = httpConn.getResponseCode();
+				if (response == HttpURLConnection.HTTP_OK) {
+					in = httpConn.getInputStream();
+				}
+			} catch (Exception ex) {
+				throw new IOException("Error connecting");
+			}
+			return in;
+		}
+
+		private Bitmap DownloadImage(String URL) {
+			Bitmap bitmap = null;
+			InputStream in = null;
+			try {
+				in = OpenHttpConnection(URL);
+				bitmap = BitmapFactory.decodeStream(in);
+				in.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return bitmap;
+		}
+	} // fragment
+
+
+
+} // class
