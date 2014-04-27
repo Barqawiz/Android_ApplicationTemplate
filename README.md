@@ -24,12 +24,13 @@ Three easy steps to create the application:
 
 For detailed and beginners tutorial [click her][0]
 
-Configuration (optional)
+Configuration (*optional*)
 -----
 Configuration file is used to change the application values based on your case like:
 
 * More link: to custom the more button link 
 * Admob id: to display your ads in the application
+* Support right to left languages
 
 To custom the file go to: res > values > congig.xml
 
