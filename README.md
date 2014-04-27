@@ -22,8 +22,16 @@ Three easy steps to create the application:
 
 **+Extra step** to custom the design: go to res folder and replace the images in drawable folders with new images
 
-for detailed and beginners tutorial [click her][0]
+For detailed and beginners tutorial [click her][0]
 
+Configuration (optional)
+-----
+Configuration file is used to change the application values based on your case like:
+
+* More link: to custom the more button link 
+* Admob id: to display your ads in the application
+
+To custom the file go to: res > values > congig.xml
 
 Result
 -----
@@ -70,6 +78,6 @@ License
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
 
-*This means that you MUST provide attribution in your application to **Monkey Clicks** for the use of this code. The way to do this is to mention **Monkey Clicks** project name in the setting or the about page for example.*
+*This means that you MUST provide attribution in your application to Monkey Clicks for the use of this code. The way to do this is to mention Monkey Clicks project name in the setting or the about page for example.*
 
 [0]: http://codk.tumblr.com/post/83727645411/android-template
