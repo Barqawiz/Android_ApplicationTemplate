@@ -1,8 +1,0 @@
-package com.iaraby.template.data;
-
-public class Beans {
-
-	public class Category {
-		
-	}
-} //class: collection of objects thast describe the database
