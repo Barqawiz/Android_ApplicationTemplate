@@ -24,7 +24,7 @@ Three easy steps to create the application:
 
 For detailed and beginners tutorial [click her][0]
 
-Configuration (*optional*)
+Configuration *(optional)*
 -----
 Configuration file is used to change the application values based on your case like:
 
