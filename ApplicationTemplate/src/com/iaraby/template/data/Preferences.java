@@ -27,6 +27,13 @@ import com.iaraby.utility.LogManager;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 
+/**
+ * One instance to manage the application preferences 
+ * 
+ * This class connected to res > values > config.xml, make sure to take a look to config.xml and change the fields
+ * based on your case
+ *
+ */
 public class Preferences {
 
 	private static Preferences instance;
@@ -56,7 +63,21 @@ public class Preferences {
 	} //method: is right to left
 	
 	public String getMarketLink() {
+		//if you want to change the more link functionality so it does not direct to Google play
+		// but to web-site link for example comment the below link and return the link directly
 		return Constants.MARKET_LINK + context.getString(R.string.google_play_developer_name);
+	}
+	
+	public int getDatabaseVersion() {
+		return context.getResources().getInteger(R.integer.db_version);
+	}
+	
+	public String getAdmobBannerId() {
+		//banner_id accessed  also through fragment_details.xml layout
+		return context.getString(R.string.banner_id);
+	}
+	public String getAdmobInterstitialId() {
+		return context.getString(R.string.interstitial_Id);
 	}
 	
 } //Class

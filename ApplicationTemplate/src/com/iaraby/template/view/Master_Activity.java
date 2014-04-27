@@ -90,7 +90,7 @@ public class Master_Activity extends FragmentActivity implements MasterNotifier 
 		if (!MyDataAdapter.getInstance().isOpen()) {
 			int version = 1;
 			try {
-				version = getResources().getInteger(R.integer.db_version);
+				version = Preferences.getInstance(this).getDatabaseVersion();
 			} catch(NotFoundException ex){
 				LogManager.getIns().ee(Constants.LOG_TAG, "Error to get database version from config.xml");
 			} catch (Exception e) {

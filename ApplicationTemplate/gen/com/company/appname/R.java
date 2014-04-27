@@ -437,6 +437,7 @@ containing a value of this type.
         public static final int font_content=0x7f07001f;
         public static final int font_title=0x7f07001e;
         /**  **Social** 
+ Change below name to your developer name in Google play to make the more button functional 
          */
         public static final int google_play_developer_name=0x7f07001b;
         public static final int interstitial_Id=0x7f07001d;

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- General -->
-    <string name="app_name">Monkey Clicls</string>
+    <string name="app_name">Monkey Clicks</string>
     <string name="title_activity_master_">Master</string>
 
     <!-- Menus -->

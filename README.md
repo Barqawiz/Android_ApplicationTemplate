@@ -28,10 +28,10 @@ for detailed and beginners tutorial [click her][0]
 Result
 -----
 * Screenshot from main page: <br />
-![alt tag](https://raw.github.com/Barqawiz/Android_ApplicationTemplate/master/resources/main.png) 
+![alt tag](https://raw.github.com/Barqawiz/Android_ApplicationTemplate/master/resources/screenshots/main.png) 
 
 * Screenshot from content page <br />
-![alt tag](https://raw.github.com/Barqawiz/Android_ApplicationTemplate/master/resources/content.png) 
+![alt tag](https://raw.github.com/Barqawiz/Android_ApplicationTemplate/master/resources/screenshots/content.png) 
 
 Ideas
 -----

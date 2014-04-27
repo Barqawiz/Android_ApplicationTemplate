@@ -40,6 +40,7 @@ import com.iaraby.template.control.DetailsPagerAdapter;
 import com.iaraby.template.control.DetailsTask;
 import com.iaraby.template.data.Constants;
 import com.iaraby.template.data.FavoriteManager;
+import com.iaraby.template.data.Preferences;
 import com.iaraby.template.util.FontManager;
 import com.iaraby.utility.LogManager;
 import com.iaraby.utility.Utility;
@@ -161,7 +162,7 @@ public class DetailsFrag extends Fragment {
 
 	private void handleAds(AdView adView) {
 		//if ad info not available do not try to get ads
-		if (getString(R.string.banner_id).length() == 0)
+		if (Preferences.getInstance(getActivity()).getAdmobBannerId().length() == 0)
 			return;
 		
 		adView.setVisibility(View.VISIBLE);
@@ -231,7 +232,7 @@ public class DetailsFrag extends Fragment {
 
 		} else if (selectedId != Constants.EMPTY_INT) {
 			// add to favorite
-			if (favManager.isFavItemInDatabase(selectedId)) {
+			if (favManager.isItemInDatabase(selectedId)) {
 				favManager.addToFav(selectedId);
 				Utility.showToastMessage(getActivity(),
 						getString(R.string.action_not_fav));

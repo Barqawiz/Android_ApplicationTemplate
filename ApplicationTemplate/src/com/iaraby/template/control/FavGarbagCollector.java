@@ -38,9 +38,11 @@ import android.database.Cursor;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
+/**
+ * This service insure the consistency of items in the database and favorite share preferences
+ */
 public class FavGarbagCollector extends IntentService {
 
-	
 
 	private static String VERSION_CLR_TAG = "version_clear:";
 	public static boolean IS_RUNNING;

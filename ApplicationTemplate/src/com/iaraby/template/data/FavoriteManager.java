@@ -111,7 +111,14 @@ public class FavoriteManager {
 		}
 	}
 
-	public boolean isFavItemInDatabase(long id) throws IllegalAccessError {
+	/**
+	 * Check if the received id available in the database or not
+	 *
+	 * @param Long id of the item
+	 * @return true if id available in database otherwise return false
+	 * @throws IllegalAccessError
+	 */
+	public boolean isItemInDatabase(long id) throws IllegalAccessError {
 		boolean res = false;
 		if (MyDataAdapter.getInstance().isOpen()) {
 			Cursor cursor = MyDataAdapter.getInstance().getContentItem(id);
@@ -127,6 +134,12 @@ public class FavoriteManager {
 	/* preferences operations variables */
 	
 
+	/**
+	 * Get favorite cursor from database 
+	 * 
+	 * @return Cursor of favorite items
+	 * @throws IllegalAccessError if error occurs while connecting to database
+	 */
 	public Cursor getFavCursor() throws IllegalAccessError {
 		if (!MyDataAdapter.getInstance().isOpen())
 			throw new IllegalAccessError(
@@ -165,7 +178,7 @@ public class FavoriteManager {
 
 	/**
 	 * This method to call a service that check the favorite list with the new
-	 * data and delete favorite id's that does not exist in database
+	 * data and delete favorite id's that does not exist in database anymore
 	 */
 	public void maintainFavChange(int dataVerion) {
 		//validate

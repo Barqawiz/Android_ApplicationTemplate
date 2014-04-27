@@ -22,7 +22,7 @@ SOFTWARE.*/
 package com.iaraby.template.data;
 
 /**
- * Collection of object to describe database tables and fields
+ * Collection of objects to describe database tables and fields
  */
 public class Beans {
 
@@ -56,8 +56,8 @@ public class Beans {
 	/**
 	 * class to describe favorite table
 	 * 
-	 *NOTE: THIS METHOD NOT SUPPORTED IN THIS VERION AS THE FAVORITES ARE STORED IN
-	 *SHARED PREFERENCES
+	 *NOTE: THIS CLASS NOT SUPPORTED IN THIS VERION AS THE FAVORITES ARE STORED IN
+	 *SHARED PREFERENCES AND MANAGED THROUGH "FavoriteManager"
 	 */
 	public class Favorite {
 		public final static String TABLE_NAME = "Favorite";

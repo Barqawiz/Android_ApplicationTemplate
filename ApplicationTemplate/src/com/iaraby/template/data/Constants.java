@@ -21,10 +21,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 package com.iaraby.template.data;
 
+/**
+ * Static variables encapsulated into one place for easy access any where in the application 
+ *
+ */
 public class Constants {
 
 	/*Constants*/
-	public final static String LOG_TAG = "Temp";
+	public final static String LOG_TAG = "MonkeyLog";
 	public final static String SPLIT = ":";
 	public final static int EMPTY_INT = -1;
 	

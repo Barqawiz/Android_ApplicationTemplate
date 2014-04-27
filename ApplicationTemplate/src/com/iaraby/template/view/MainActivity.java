@@ -33,6 +33,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.iaraby.template.control.FavGarbagCollector;
 import com.iaraby.template.data.Constants;
 import com.iaraby.template.data.MyDataAdapter;
+import com.iaraby.template.data.Preferences;
 import com.iaraby.template.util.DialogManager;
 import com.iaraby.template.view.fragment.MainFragment;
 import com.iaraby.utility.LogManager;
@@ -63,7 +64,7 @@ public class MainActivity extends FragmentActivity {
 	} // method: on create
 
 	private void handleInterstitialAd() {
-		String adId = getString(R.string.interstitial_Id);
+		String adId = Preferences.getInstance(this).getAdmobInterstitialId();
 		if (adId == null || adId.length() == 0)
 			return;
 

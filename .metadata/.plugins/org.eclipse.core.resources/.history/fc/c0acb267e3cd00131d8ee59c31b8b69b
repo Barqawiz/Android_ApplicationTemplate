@@ -1,0 +1,118 @@
+/*The MIT License (MIT)
+
+Copyright (c) 2014 Ahmad Barqawi (github.com/Barqawiz)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.*/
+package com.iaraby.template.control;
+
+import com.company.appname.R;
+import com.iaraby.template.data.Beans;
+import com.iaraby.template.data.Constants;
+import com.iaraby.template.data.FavoriteManager;
+import com.iaraby.template.data.MyDataAdapter;
+import com.iaraby.template.data.Beans.Category;
+import com.iaraby.utility.LogManager;
+import com.iaraby.utility.Utility;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.util.Log;
+
+/**
+ * Get details items from the database through a thread for better performance
+ *
+ */
+public class DetailsTask extends AsyncTask<String, Integer, Boolean>{
+
+	private final static int success = 1;
+	private final static int fail    = 0;
+
+	private Context context;
+	//params
+	boolean isFav;
+	private long id;
+	private int  position;
+	
+	//result
+	private HandleResult handler;
+	String title;
+	Cursor content;
+	
+	public DetailsTask(Context context, long id, int  position, boolean isFav, HandleResult handler) {
+		this.context = context;
+		this.id    = id;
+		this.position = position;
+		this.handler  = handler;
+		this.isFav = isFav;
+	} //constructor
+	
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		super.onProgressUpdate(values);
+		
+		if (values[0] == success && content != null) {
+			handler.setResult(title, content);
+		} else {
+			handler.handleError("Error reading data from database");
+		} //check id data received successfully 
+		
+	} //method: 
+
+	@Override
+	protected Boolean doInBackground(String... params) {
+		
+		if (!MyDataAdapter.getInstance().isOpen()) {
+			LogManager.getIns().ee(Constants.LOG_TAG, "database closed ! make sure you call open(config)");
+			publishProgress(Constants.EMPTY_INT);
+			return false;
+		}
+			
+		if (isFav) {
+			try {
+				content = FavoriteManager.getInstance(context).getFavCursor();
+			} catch(IllegalAccessError ex) {
+				Log.e(Constants.LOG_TAG, ex.toString());
+			} //try to get content cursor
+			title = context.getString(R.string.fav);
+			
+		} else {
+			content = MyDataAdapter.getInstance().getContentList(id);
+			
+			Cursor catCur   = MyDataAdapter.getInstance().getCategoryName(id);
+			if (catCur != null && catCur.moveToFirst()) {
+				try {
+					title = catCur.getString(catCur.getColumnIndexOrThrow(Category.COL_NAME));
+				}catch(IllegalArgumentException ex) {
+					publishProgress(Constants.EMPTY_INT);
+					return false;
+				} //try to get the title
+			}
+		} //check if Favorite
+		publishProgress(success);
+		
+		return true;
+	} //method: process the data
+
+	public interface HandleResult {
+		public void setResult(String title, String desc);
+		public void setResult(String title, Cursor desc);
+		public void handleError(String error);
+	} //handler for task results
+} //class: Task to read details for selected item 

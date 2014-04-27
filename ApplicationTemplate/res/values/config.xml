@@ -2,7 +2,7 @@
 <resources>
 
     <!-- **Social** -->
-    
+    <!-- Change below name to your developer name in Google play to make the more button functional -->
     <string name="google_play_developer_name">Barqawiz</string>
 
     <!-- **Languages** -->

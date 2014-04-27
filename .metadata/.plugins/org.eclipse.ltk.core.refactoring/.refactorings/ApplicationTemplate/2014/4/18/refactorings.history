@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;com.iaraby.template.data.FavoriteManager.isFavItemInDatabase(...)&apos; to &apos;isItemInDatabase&apos;&#x0A;- Original project: &apos;ApplicationTemplate&apos;&#x0A;- Original element: &apos;com.iaraby.template.data.FavoriteManager.isFavItemInDatabase(...)&apos;&#x0A;- Renamed element: &apos;com.iaraby.template.data.FavoriteManager.isItemInDatabase(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;isFavItemInDatabase&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;com.iaraby.template.data{FavoriteManager.java[FavoriteManager~isFavItemInDatabase~J" name="isItemInDatabase" references="true" stamp="1398586021832" version="1.0"/>
+</session>

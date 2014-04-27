@@ -36,6 +36,10 @@ import com.iaraby.template.data.Preferences;
 import com.iaraby.template.data.Constants;
 import com.iaraby.template.util.FontManager;
 
+/**
+ * Manage the display of items in DetailsFrag view pager
+ *
+ */
 public class DetailsPagerAdapter extends PagerAdapter{
 
 	private Context context;

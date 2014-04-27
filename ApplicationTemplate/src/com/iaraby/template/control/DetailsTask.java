@@ -35,6 +35,10 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/**
+ * Get details page items from the database through a thread for better performance
+ *
+ */
 public class DetailsTask extends AsyncTask<String, Integer, Boolean>{
 
 	private final static int success = 1;
