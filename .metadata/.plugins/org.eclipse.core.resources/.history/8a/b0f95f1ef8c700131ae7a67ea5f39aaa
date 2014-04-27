@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Admob ids looks like this id: ca-app-pub-5913188303135522/1103281522 -->
-     <!-- Not the example id not real and does not work create  -->
-    <string name="banner_id">ca-app-pub-4912177303135585/1103281559</string> 
-    <string name="interstitial_Id">ca-app-pub-4912177303135585/4056747950</string>
-</resources>
