@@ -63,7 +63,7 @@ Credit
 
 *Call for Contributors to create other templates and support more platforms*
 
-For the development plans check about section in the [manual][1]
+*Check the development plan in about section inside the [manual][1]*
 License
 -------
     The MIT License (MIT)
