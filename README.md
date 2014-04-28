@@ -63,6 +63,7 @@ Credit
 
 *Call for Contributors to create other templates and support more platforms*
 
+For the development plans check about section in the [manual][1]
 License
 -------
     The MIT License (MIT)
@@ -82,3 +83,4 @@ License
 *This means that you MUST provide attribution in your application to* **Monkey Clicks** *for the use of this code. The way to do this is to mention* **Monkey Clicks** *project name in the setting or the about page for example.*
 
 [0]: http://codk.tumblr.com/post/83727645411/android-template
+[1]: https://raw.github.com/Barqawiz/Android_ApplicationTemplate/master/resources/Manual.pdf
