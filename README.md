@@ -1,3 +1,6 @@
+Legend version from Eclipse days (require update to Android Studio Era)
+-----
+
 Monkey Clicks - Android Application Template
 ======
 This application is part of Monkey Clicks project that aim to make it fast and easy to create mobile applications without writing code ! sure for coders they have the option to custom the code.
